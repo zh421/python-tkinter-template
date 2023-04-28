@@ -17,11 +17,13 @@ https://www.youtube.com/watch?v=HjNHATw6XgY&list=PLQVvvaa0QuDclKx-QpC9wntnURXVJq
 # you can convert the dataframe using df.to_numpy.tolist()
 
 
-class MyApp(tk.Tk):
+class MyApp(tk.Toplevel):
 
-    def __init__(self, *args, **kwargs):
-
-        tk.Tk.__init__(self, *args, **kwargs)
+    def __init__(self, loginPage, *args, **kwargs):
+        # Toplevel cannot close windows correctly, so put loginPage and make function for closing
+        global parentWindow
+        parentWindow = loginPage
+        tk.Toplevel.__init__(self, *args, **kwargs)
         main_frame = tk.Frame(self, height=600, width=1024)
         main_frame.pack_propagate(0)
         main_frame.pack(fill="both", expand="true")
@@ -47,7 +49,7 @@ class MyApp(tk.Tk):
         ow.OpenNewWindow()
 
     def Quit_application(self):
-        self.destroy()
+        parentWindow.destroy()
 
 
 

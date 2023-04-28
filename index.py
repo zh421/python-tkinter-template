@@ -15,10 +15,10 @@ def getlogin(username, password):
     if validation:
         tk.messagebox.showinfo("Login Successful",
                                    "Welcome {}".format(username))
-        # 顯示隱藏的root window
+        # appear hidden root window
         root.deiconify()
-        # login window不會再用，銷毀
-        login.destroy()
+        # hide login window
+        login.withdraw()
     else:
         tk.messagebox.showerror("Information", "The Username or Password you have entered are incorrect ")
 
@@ -81,14 +81,14 @@ class LoginPage(tk.Tk):
         signup_btn.grid(row=3, column=2)
 
     
-# 啟動程式
-# 製作兩個window, one for logIn, another one is mainAPP
+# start
+# make two windows, one for logIn, another one is mainAPP
 login = LoginPage()
-login.title("登入空氣品質查詢app")
+login.title("LoginApp")
 
-root = TkinterTemplate.MyApp()
-root.withdraw() # 隱藏window，登入成功後才open
-root.title("空氣品質查詢app")
+root = TkinterTemplate.MyApp(login)
+root.withdraw() # hide window，open after login
+root.title("MainApp")
 
 root.mainloop() # keep window working
 
