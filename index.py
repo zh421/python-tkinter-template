@@ -80,6 +80,10 @@ class LoginPage(tk.Tk):
         signup_btn = ttk.Button(frame_login, text="Register", command=lambda: get_signup())
         signup_btn.grid(row=3, column=2)
 
+def on_closing():
+    if tk.messagebox.askokcancel("Quit", "Do you want to quit?"):
+        root.destroy()
+        login.destroy()
     
 # start
 # make two windows, one for logIn, another one is mainAPP
@@ -89,7 +93,7 @@ login.title("LoginApp")
 root = TkinterTemplate.MyApp(login)
 root.withdraw() # hide window，open after login
 root.title("MainApp")
-
+root.protocol("WM_DELETE_WINDOW", on_closing)
 root.mainloop() # keep window working
 
     
